@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Emily ❤️</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Quicksand:wght@400;500;600&amp;family=Dancing+Script:wght@600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      font-family: 'Quicksand', sans-serif;
+    }
+    
+    .cursive {
+      font-family: 'Dancing Script', cursive;
+    }
+    
+    .serif {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    @keyframes floatHeart {
+      0% { transform: translateY(100%) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100%) rotate(360deg); opacity: 0; }
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes petalFall {
+      0% { transform: translateY(-10%) rotate(0deg) translateX(0); opacity: 1; }
+      100% { transform: translateY(100%) rotate(720deg) translateX(100px); opacity: 0; }
+    }
+    
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(244, 114, 182, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(244, 114, 182, 0.8), 0 0 60px rgba(251, 113, 133, 0.4); }
+    }
+    
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      14% { transform: scale(1.3); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.3); }
+      70% { transform: scale(1); }
+    }
+    
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .animate-sparkle {
+      animation: sparkle 2s ease-in-out infinite;
+    }
+    
+    .animate-pulse-heart {
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    .animate-glow {
+      animation: glow 2s ease-in-out infinite;
+    }
+    
+    .animate-heartbeat {
+      animation: heartBeat 1.5s ease-in-out infinite;
+    }
+    
+    .glass {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .glass-dark {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .floating-heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 100;
+      animation: floatHeart 4s ease-out forwards;
+    }
+    
+    .falling-petal {
+      position: fixed;
+      pointer-events: none;
+      z-index: 100;
+      animation: petalFall 5s ease-out forwards;
+    }
+    
+    .section-fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    
+    .section-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-10px) scale(1.02);
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #ec4899, #f43f5e, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .btn-valentine {
+      background: linear-gradient(135deg, #ec4899, #f43f5e);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-valentine:hover {
+      background: linear-gradient(135deg, #f43f5e, #ec4899);
+      transform: scale(1.05);
+    }
+    
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #ec4899, #f43f5e);
+      border-radius: 4px;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full overflow-auto">
+  <div id="app-wrapper" class="w-full min-h-full relative"><!-- Animated Background -->
+   <div class="fixed inset-0 overflow-hidden pointer-events-none" style="background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 25%, #f5d0fe 50%, #fecdd3 75%, #fff1f2 100%);"><!-- Floating Background Hearts -->
+    <div class="absolute text-pink-300/30 text-6xl animate-float" style="top: 10%; left: 5%; animation-delay: 0s;">
+     ❤️
+    </div>
+    <div class="absolute text-rose-300/25 text-4xl animate-float" style="top: 20%; right: 10%; animation-delay: 1s;">
+     💕
+    </div>
+    <div class="absolute text-pink-200/30 text-5xl animate-float" style="top: 60%; left: 8%; animation-delay: 2s;">
+     💖
+    </div>
+    <div class="absolute text-fuchsia-300/25 text-3xl animate-float" style="top: 75%; right: 15%; animation-delay: 0.5s;">
+     💗
+    </div>
+    <div class="absolute text-rose-200/30 text-4xl animate-float" style="top: 40%; left: 85%; animation-delay: 1.5s;">
+     💝
+    </div>
+    <div class="absolute text-pink-300/20 text-5xl animate-float" style="top: 85%; left: 50%; animation-delay: 2.5s;">
+     🌹
+    </div><!-- Sparkles -->
+    <div class="absolute w-2 h-2 bg-white rounded-full animate-sparkle" style="top: 15%; left: 20%; animation-delay: 0s;"></div>
+    <div class="absolute w-3 h-3 bg-pink-200 rounded-full animate-sparkle" style="top: 30%; right: 25%; animation-delay: 0.5s;"></div>
+    <div class="absolute w-2 h-2 bg-white rounded-full animate-sparkle" style="top: 50%; left: 30%; animation-delay: 1s;"></div>
+    <div class="absolute w-2 h-2 bg-fuchsia-200 rounded-full animate-sparkle" style="top: 70%; right: 35%; animation-delay: 1.5s;"></div>
+    <div class="absolute w-3 h-3 bg-rose-200 rounded-full animate-sparkle" style="top: 25%; left: 70%; animation-delay: 2s;"></div>
+    <div class="absolute w-2 h-2 bg-white rounded-full animate-sparkle" style="top: 55%; right: 20%; animation-delay: 0.8s;"></div>
+   </div><!-- Music Toggle --> <button id="musicToggle" class="fixed top-4 right-4 z-50 glass rounded-full p-3 text-pink-600 hover:text-rose-500 transition-all hover:scale-110" title="Toggle Music">
+    <svg id="musicIcon" class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+    </svg></button> <!-- Main Content -->
+   <div class="relative z-10 w-full"><!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-4 py-12">
+     <div class="text-center max-w-4xl mx-auto section-fade visible">
+      <div class="mb-8"><span class="text-8xl animate-heartbeat inline-block">💖</span>
+      </div>
+      <h1 id="heroTitle" class="cursive text-4xl sm:text-5xl md:text-6xl lg:text-7xl gradient-text mb-6 leading-tight">Emily, This Website Is Proof I Put More Effort Here Than Most People Put Into Life.</h1>
+      <p id="heroSubtitle" class="text-lg sm:text-xl md:text-2xl text-pink-600/80 mb-8">A tiny corner of the internet made just for you ❤️</p>
+      <div class="flex justify-center gap-4 flex-wrap">
+       <div class="glass rounded-full px-6 py-3 text-pink-700"><span class="cursive text-xl">Scroll for magic ✨</span>
+       </div>
+      </div>
+      <div class="mt-12 animate-bounce">
+       <svg class="w-8 h-8 mx-auto text-pink-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+       </svg>
+      </div>
+     </div>
+    </section><!-- Why You're Special Section -->
+    <section class="py-20 px-4">
+     <div class="max-w-4xl mx-auto">
+      <div class="section-fade text-center mb-16">
+       <h2 class="serif text-3xl sm:text-4xl md:text-5xl text-rose-600 mb-4">Why You're Special</h2>
+       <div class="w-24 h-1 bg-gradient-to-r from-pink-400 to-rose-400 mx-auto rounded-full"></div>
+      </div>
+      <div class="space-y-8">
+       <div class="section-fade glass rounded-3xl p-6 sm:p-8 card-hover">
+        <div class="flex items-start gap-4"><span class="text-4xl">🌸</span>
+         <div>
+          <h3 class="serif text-xl sm:text-2xl text-rose-600 mb-2">Effortlessly Beautiful</h3>
+          <p id="specialLine1" class="text-pink-700/80 text-base sm:text-lg">You have this magic that makes everything around you feel softer, warmer, and more alive. Your smile? Dangerous. Your laugh? Even more dangerous.</p>
+         </div>
+        </div>
+       </div>
+       <div class="section-fade glass rounded-3xl p-6 sm:p-8 card-hover" style="animation-delay: 0.2s;">
+        <div class="flex items-start gap-4"><span class="text-4xl">💫</span>
+         <div>
+          <h3 class="serif text-xl sm:text-2xl text-rose-600 mb-2">Impossibly Kind</h3>
+          <p id="specialLine2" class="text-pink-700/80 text-base sm:text-lg">The way you care about others, the way you listen, the way you make people feel seen — it's rare. Like finding a unicorn, but cuter.</p>
+         </div>
+        </div>
+       </div>
+       <div class="section-fade glass rounded-3xl p-6 sm:p-8 card-hover" style="animation-delay: 0.4s;">
+        <div class="flex items-start gap-4"><span class="text-4xl">🌹</span>
+         <div>
+          <h3 class="serif text-xl sm:text-2xl text-rose-600 mb-2">Absolutely Unforgettable</h3>
+          <p id="specialLine3" class="text-pink-700/80 text-base sm:text-lg">Once someone meets you, they don't forget. You leave this impression that stays, like a favorite song that plays in the back of your mind forever.</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- Things I Like About You -->
+    <section class="py-20 px-4">
+     <div class="max-w-5xl mx-auto">
+      <div class="section-fade text-center mb-16">
+       <h2 class="serif text-3xl sm:text-4xl md:text-5xl text-rose-600 mb-4">Things I Like About You</h2>
+       <div class="w-24 h-1 bg-gradient-to-r from-pink-400 to-rose-400 mx-auto rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+       <div class="section-fade glass rounded-2xl p-6 card-hover text-center"><span class="text-5xl mb-4 block">😊</span>
+        <h4 class="cursive text-2xl text-rose-500 mb-2">Your Smile</h4>
+        <p class="text-pink-600/70">It could honestly end wars and start butterflies</p>
+       </div>
+       <div class="section-fade glass rounded-2xl p-6 card-hover text-center" style="animation-delay: 0.1s;"><span class="text-5xl mb-4 block">🎭</span>
+        <h4 class="cursive text-2xl text-rose-500 mb-2">Your Humor</h4>
+        <p class="text-pink-600/70">You make me laugh when I didn't even know I needed to</p>
+       </div>
+       <div class="section-fade glass rounded-2xl p-6 card-hover text-center" style="animation-delay: 0.2s;"><span class="text-5xl mb-4 block">💭</span>
+        <h4 class="cursive text-2xl text-rose-500 mb-2">Your Mind</h4>
+        <p class="text-pink-600/70">Smart and witty — a beautiful combo that keeps me on my toes</p>
+       </div>
+       <div class="section-fade glass rounded-2xl p-6 card-hover text-center" style="animation-delay: 0.3s;"><span class="text-5xl mb-4 block">💪</span>
+        <h4 class="cursive text-2xl text-rose-500 mb-2">Your Strength</h4>
+        <p class="text-pink-600/70">You handle life with a grace that's honestly inspiring</p>
+       </div>
+       <div class="section-fade glass rounded-2xl p-6 card-hover text-center" style="animation-delay: 0.4s;"><span class="text-5xl mb-4 block">✨</span>
+        <h4 class="cursive text-2xl text-rose-500 mb-2">Your Energy</h4>
+        <p class="text-pink-600/70">Being around you feels like sunshine on a cloudy day</p>
+       </div>
+       <div class="section-fade glass rounded-2xl p-6 card-hover text-center" style="animation-delay: 0.5s;"><span class="text-5xl mb-4 block">💝</span>
+        <h4 class="cursive text-2xl text-rose-500 mb-2">Just... You</h4>
+        <p class="text-pink-600/70">Everything that makes you, you. All of it. No exceptions.</p>
+       </div>
+      </div>
+     </div>
+    </section><!-- Valentine Question Section -->
+    <section class="py-20 px-4">
+     <div class="max-w-3xl mx-auto text-center">
+      <div class="section-fade">
+       <div class="glass rounded-3xl p-8 sm:p-12"><span class="text-7xl block mb-6 animate-pulse-heart">💘</span>
+        <h2 class="serif text-3xl sm:text-4xl md:text-5xl text-rose-600 mb-6">The Big Question...</h2>
+        <p class="text-pink-600/80 text-lg sm:text-xl mb-10">I've been meaning to ask you something important...</p><button id="valentineBtn" class="btn-valentine text-white text-xl sm:text-2xl px-10 sm:px-16 py-4 sm:py-6 rounded-full font-semibold animate-glow shadow-2xl"> Will You Be My Valentine? 💕 </button>
+        <div id="valentineResponse" class="mt-8 hidden">
+         <div class="text-6xl mb-4 animate-heartbeat">
+          🥳💖🎉
+         </div>
+         <p class="cursive text-3xl sm:text-4xl text-rose-500">I knew you'd say yes!</p>
+         <p class="text-pink-600/70 mt-2">Best decision ever! 😉</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- Roast Section -->
+    <section class="py-20 px-4">
+     <div class="max-w-4xl mx-auto">
+      <div class="section-fade text-center mb-12">
+       <h2 class="serif text-3xl sm:text-4xl md:text-5xl text-rose-600 mb-4">Roast Corner 🔥</h2>
+       <p class="cursive text-xl sm:text-2xl text-pink-500">(Because Love Without Roast Is Suspicious)</p>
+       <div class="w-24 h-1 bg-gradient-to-r from-orange-400 to-rose-400 mx-auto rounded-full mt-4"></div>
+      </div>
+      <div class="space-y-6">
+       <div class="section-fade glass-dark rounded-2xl p-6 card-hover border-l-4 border-orange-400">
+        <div class="flex items-center gap-4"><span class="text-3xl">😏</span>
+         <p class="text-pink-700 text-base sm:text-lg italic">"Emily, you're cute… but don't act surprised, I noticed before you did."</p>
+        </div>
+       </div>
+       <div class="section-fade glass-dark rounded-2xl p-6 card-hover border-l-4 border-rose-400" style="animation-delay: 0.1s;">
+        <div class="flex items-center gap-4"><span class="text-3xl">📶</span>
+         <p class="text-pink-700 text-base sm:text-lg italic">"You stole my attention like it was free Wi-Fi."</p>
+        </div>
+       </div>
+       <div class="section-fade glass-dark rounded-2xl p-6 card-hover border-l-4 border-pink-400" style="animation-delay: 0.2s;">
+        <div class="flex items-center gap-4"><span class="text-3xl">📱</span>
+         <p class="text-pink-700 text-base sm:text-lg italic">"You're the reason I smile at my phone like an idiot."</p>
+        </div>
+       </div>
+       <div class="section-fade glass-dark rounded-2xl p-6 card-hover border-l-4 border-fuchsia-400" style="animation-delay: 0.3s;">
+        <div class="flex items-center gap-4"><span class="text-3xl">⚠️</span>
+         <p class="text-pink-700 text-base sm:text-lg italic">"Not saying you're addictive, but yeah… you kinda are."</p>
+        </div>
+       </div>
+       <div class="section-fade glass-dark rounded-2xl p-6 card-hover border-l-4 border-red-400" style="animation-delay: 0.4s;">
+        <div class="flex items-center gap-4"><span class="text-3xl">😤</span>
+         <p class="text-pink-700 text-base sm:text-lg italic">"You're lucky you're cute, otherwise I'd roast harder."</p>
+        </div>
+       </div>
+       <div class="section-fade glass-dark rounded-2xl p-6 card-hover border-l-4 border-amber-400" style="animation-delay: 0.5s;">
+        <div class="flex items-center gap-4"><span class="text-3xl">🧠</span>
+         <p class="text-pink-700 text-base sm:text-lg italic">"You live in my head rent-free. Honestly? Rude. At least pay utilities."</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- Closing Section -->
+    <section class="py-20 px-4">
+     <div class="max-w-3xl mx-auto text-center">
+      <div class="section-fade">
+       <div class="glass rounded-3xl p-8 sm:p-12">
+        <div class="text-7xl mb-8"><span class="inline-block animate-pulse-heart">💖</span>
+        </div>
+        <h2 class="serif text-3xl sm:text-4xl text-rose-600 mb-6">Forever Yours</h2>
+        <p id="closingMessage" class="cursive text-2xl sm:text-3xl text-pink-600 mb-8 leading-relaxed">"This website will stay here… just like the smile you gave me."</p>
+        <div class="flex justify-center gap-2 text-4xl"><span class="animate-float" style="animation-delay: 0s;">🌹</span> <span class="animate-float" style="animation-delay: 0.2s;">💕</span> <span class="animate-float" style="animation-delay: 0.4s;">✨</span> <span class="animate-float" style="animation-delay: 0.6s;">💖</span> <span class="animate-float" style="animation-delay: 0.8s;">🌹</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- Footer -->
+    <footer class="py-8 px-4 text-center">
+     <div class="section-fade">
+      <p class="text-pink-600/60 text-sm sm:text-base">Made with love, effort, and zero shame. ❤️</p>
+      <p class="cursive text-xl sm:text-2xl text-rose-400 mt-2">For Emily, Always 💕</p>
+     </div>
+    </footer>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      hero_title: "Emily, This Website Is Proof I Put More Effort Here Than Most People Put Into Life.",
+      hero_subtitle: "A tiny corner of the internet made just for you ❤️",
+      special_line_1: "You have this magic that makes everything around you feel softer, warmer, and more alive. Your smile? Dangerous. Your laugh? Even more dangerous.",
+      special_line_2: "The way you care about others, the way you listen, the way you make people feel seen — it's rare. Like finding a unicorn, but cuter.",
+      special_line_3: "Once someone meets you, they don't forget. You leave this impression that stays, like a favorite song that plays in the back of your mind forever.",
+      closing_message: "\"This website will stay here… just like the smile you gave me.\""
+    };
+    
+    let config = { ...defaultConfig };
+    let musicPlaying = false;
+    let audioContext = null;
+    
+    // Initialize Element SDK
+    window.elementSdk.init({
+      defaultConfig,
+      onConfigChange: async (newConfig) => {
+        config = { ...defaultConfig, ...newConfig };
+        
+        document.getElementById('heroTitle').textContent = config.hero_title || defaultConfig.hero_title;
+        document.getElementById('heroSubtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+        document.getElementById('specialLine1').textContent = config.special_line_1 || defaultConfig.special_line_1;
+        document.getElementById('specialLine2').textContent = config.special_line_2 || defaultConfig.special_line_2;
+        document.getElementById('specialLine3').textContent = config.special_line_3 || defaultConfig.special_line_3;
+        document.getElementById('closingMessage').textContent = config.closing_message || defaultConfig.closing_message;
+      },
+      mapToCapabilities: (config) => ({
+        recolorables: [],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      }),
+      mapToEditPanelValues: (config) => new Map([
+        ["hero_title", config.hero_title || defaultConfig.hero_title],
+        ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+        ["special_line_1", config.special_line_1 || defaultConfig.special_line_1],
+        ["special_line_2", config.special_line_2 || defaultConfig.special_line_2],
+        ["special_line_3", config.special_line_3 || defaultConfig.special_line_3],
+        ["closing_message", config.closing_message || defaultConfig.closing_message]
+      ])
+    });
+    
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.section-fade').forEach(el => {
+      observer.observe(el);
+    });
+    
+    // Valentine button click
+    const valentineBtn = document.getElementById('valentineBtn');
+    const valentineResponse = document.getElementById('valentineResponse');
+    
+    valentineBtn.addEventListener('click', () => {
+      valentineBtn.style.display = 'none';
+      valentineResponse.classList.remove('hidden');
+      
+      // Create celebration effect
+      createCelebration();
+    });
+    
+    function createCelebration() {
+      const hearts = ['❤️', '💕', '💖', '💗', '💘', '💝', '🌹', '🎉', '✨'];
+      
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          createFloatingHeart(hearts[Math.floor(Math.random() * hearts.length)]);
+        }, i * 100);
+      }
+      
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+          createFallingPetal();
+        }, i * 150);
+      }
+    }
+    
+    function createFloatingHeart(emoji) {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.textContent = emoji;
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.bottom = '-50px';
+      heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+      heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+      
+      document.body.appendChild(heart);
+      
+      setTimeout(() => heart.remove(), 5000);
+    }
+    
+    function createFallingPetal() {
+      const petal = document.createElement('div');
+      petal.className = 'falling-petal';
+      petal.textContent = '🌸';
+      petal.style.left = Math.random() * 100 + '%';
+      petal.style.top = '-50px';
+      petal.style.fontSize = (Math.random() * 20 + 15) + 'px';
+      petal.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      
+      document.body.appendChild(petal);
+      
+      setTimeout(() => petal.remove(), 7000);
+    }
+    
+    // Music toggle (visual feedback only - actual audio not supported in iframe)
+    const musicToggle = document.getElementById('musicToggle');
+    const musicIcon = document.getElementById('musicIcon');
+    
+    musicToggle.addEventListener('click', () => {
+      musicPlaying = !musicPlaying;
+      
+      if (musicPlaying) {
+        musicIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
+        musicToggle.classList.add('bg-pink-100');
+      } else {
+        musicIcon.innerHTML = '<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>';
+        musicToggle.classList.remove('bg-pink-100');
+      }
+    });
+    
+    // Smooth scrolling
+    document.documentElement.style.scrollBehavior = 'smooth';
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c666173a7349ac8',t:'MTc2OTgzMjg1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
